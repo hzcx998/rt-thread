@@ -11,6 +11,8 @@
 #include <rtthread.h>
 #include "utest.h"
 
+#define UTEST_THREAD_STACK_SIZE 4096
+
 #define MSG_SIZE    4
 #define MAX_MSGS    5
 
@@ -19,8 +21,8 @@ static rt_uint8_t mq_buf[(MSG_SIZE + 4) * MAX_MSGS];
 
 static struct rt_thread mq_send_thread;
 static struct rt_thread mq_recv_thread;
-static rt_uint8_t mq_send_stack[512];
-static rt_uint8_t mq_recv_stack[512];
+static rt_uint8_t mq_send_stack[UTEST_THREAD_STACK_SIZE];
+static rt_uint8_t mq_recv_stack[UTEST_THREAD_STACK_SIZE];
 
 static struct rt_event finish_e;
 #define MQSEND_FINISH   0x01
