@@ -486,7 +486,7 @@ void rt_schedule(void)
                     extern void rt_thread_handle_sig(rt_bool_t clean_state);
 
                     RT_OBJECT_HOOK_CALL(rt_scheduler_switch_hook, (from_thread));
-
+                    
                     rt_hw_context_switch((rt_ubase_t)&from_thread->sp,
                             (rt_ubase_t)&to_thread->sp);
 
@@ -517,7 +517,7 @@ void rt_schedule(void)
                 else
                 {
                     RT_DEBUG_LOG(RT_DEBUG_SCHEDULER, ("switch in interrupt\n"));
-
+                    
                     rt_hw_context_switch_interrupt((rt_ubase_t)&from_thread->sp,
                             (rt_ubase_t)&to_thread->sp);
                 }
@@ -627,7 +627,7 @@ void rt_scheduler_do_irq_switch(void *context)
 
                 rt_hw_context_switch_interrupt(context, (rt_ubase_t)&current_thread->sp,
                         (rt_ubase_t)&to_thread->sp, to_thread);
-
+                return; /* return back to interrupt stack */
                 /*
                  * NOTE: The thread should never be here! When the thread switches back, 
                  * it will restore the register context from the passed-in interrupt `context` parameter and return.
