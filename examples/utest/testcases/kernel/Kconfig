@@ -39,4 +39,16 @@ config UTEST_MAILBOX_TC
     bool "mailbox test"
     default n
 
+config UTEST_THREAD_TC
+    bool "thread test"
+    default n
+
+config UTEST_OBJECT_TC
+    bool "object test"
+    default n
+
+config UTEST_CLOCK_TC
+    bool "clock test"
+    default n
+
 endmenu

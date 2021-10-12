@@ -20,7 +20,7 @@ static rt_sem_t dynamic_semaphore;
 static void test_static_semaphore_init(void)
 {
     rt_err_t result;
-    int rand_num = rand() % 0x10000;
+    int rand_num = 10;
 
     for (int i = 0; i < rand_num; i++)
     {
@@ -47,7 +47,7 @@ static void test_static_semaphore_init(void)
 static void test_static_semaphore_detach(void)
 {
     rt_err_t result;
-    int rand_num = rand() % 0x10000;
+    int rand_num = 10;
 
     for (int i = 0; i < rand_num; i++)
     {
@@ -270,7 +270,7 @@ static void test_static_semaphore_release_isr(void)
 static void test_dynamic_semaphore_create(void)
 {
     rt_err_t result;
-    int rand_num = rand() % 0x10000;
+    int rand_num = 10;
 
     for (int i = 0; i < rand_num; i++)
     {
@@ -297,7 +297,7 @@ static void test_dynamic_semaphore_create(void)
 static void test_dynamic_semaphore_delete(void)
 {
     rt_err_t result;
-    int rand_num = rand() % 0x10000;
+    int rand_num = 10;
 
     for (int i = 0; i < rand_num; i++)
     {

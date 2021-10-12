@@ -15,22 +15,31 @@ if GetDepend(['UTEST_SEMAPHORE_TC']):
     src += ['semaphore_tc.c']
 
 if GetDepend(['UTEST_EVENT_TC']):
-    src += ['event_tc.c']
+    src += ['event_tc.c', 'event_static_tc.c']
 
 if GetDepend(['UTEST_TIMER_TC']):
-    src += ['timer_tc.c']
+    src += ['timer_tc2.c']
 
 if GetDepend(['UTEST_MESSAGEQUEUE_TC']):
-    src += ['messagequeue_tc.c']
+    src += ['messagequeue2_tc.c']
 
 if GetDepend(['UTEST_SIGNAL_TC']):
     src += ['signal_tc.c']
 
 if GetDepend(['UTEST_MUTEX_TC']):
-    src += ['mutex_tc.c']
+    src += ['mutex_simple_tc.c']
 
 if GetDepend(['UTEST_MAILBOX_TC']):
     src += ['mailbox_tc.c']
+
+if GetDepend(['UTEST_THREAD_TC']):
+    src += ['thread_tc.c', 'thread_static_tc.c']
+
+if GetDepend(['UTEST_OBJECT_TC']):
+    src += ['object_tc.c']
+
+if GetDepend(['UTEST_CLOCK_TC']):
+    src += ['clock_tc.c']
 
 CPPPATH = [cwd]
 

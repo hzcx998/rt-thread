@@ -31,7 +31,7 @@ static char thread2_stack[UTEST_THREAD_STACK_SIZE];
 static struct rt_thread thread2;
 
 #define THREAD_PRIORITY      9
-#define THREAD_TIMESLICE     5
+#define THREAD_TIMESLICE     30
 
 static rt_thread_t mb_send = RT_NULL;
 static rt_thread_t mb_recv = RT_NULL;
@@ -172,7 +172,7 @@ static void thread2_send_static_mb(void *arg)
     }
     rt_thread_mdelay(100);
 
-    res = rt_mb_send_wait(&test_static_mb, (rt_ubase_t)&mb_send_str2, 10);
+    res = rt_mb_send_wait(&test_static_mb, (rt_ubase_t)&mb_send_str2, 50);
     if (res != RT_EOK)
     {
         uassert_false(1);
@@ -216,7 +216,9 @@ static void thread1_recv_static_mb(void *arg)
 static void test_static_mailbox_send_recv(void)
 {
     rt_err_t result;
-
+    static_mb_recv_thread_finish = 0;
+    static_mb_send_thread_finish = 0;
+    
     result = rt_mb_init(&test_static_mb, "mbt", &mb_pool[0], sizeof(mb_pool) / 4, RT_IPC_FLAG_FIFO);
     if (result != RT_EOK)
     {
@@ -243,7 +245,7 @@ static void test_static_mailbox_send_recv(void)
 
     while (static_mb_recv_thread_finish != 1 || static_mb_send_thread_finish != 1)
     {
-        rt_thread_delay(1);
+        rt_thread_delay(10);
     }
 
     if (rt_mb_detach(&test_static_mb) != RT_EOK)
@@ -308,6 +310,9 @@ static void thread3_recv_dynamic_mb(void *arg)
 
 static void test_dynamic_mailbox_send_recv(void)
 {
+    dynamic_mb_recv_thread_finish = 0;
+    dynamic_mb_send_thread_finish = 0;
+    
     test_dynamic_mb = rt_mb_create("mbt", sizeof(mb_pool) / 4, RT_IPC_FLAG_FIFO);
     if (test_dynamic_mb == RT_NULL)
     {

@@ -15,7 +15,7 @@
 #define HEAP_SIZE        (64 * 1024)
 #define HEAP_ALIGN       (4)
 #define SLICE_NUM        (40)
-#define TEST_TIMES       (100000)
+#define TEST_TIMES       (1000)
 #define HEAP_NAME        "heap1"
 #define SLICE_SIZE_MAX   (HEAP_SIZE/SLICE_NUM)
 
