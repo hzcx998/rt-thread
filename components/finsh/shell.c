@@ -453,6 +453,13 @@ void finsh_thread_entry(void *parameter)
     finsh_wait_auth();
 #endif
 
+#ifdef FINSH_USING_AUTO_CMD
+#ifndef FINSH_AUTO_CMD
+#define FINSH_AUTO_CMD "help"
+#endif
+    msh_exec(FINSH_AUTO_CMD, strlen(FINSH_AUTO_CMD));
+#endif  /* FINSH_USING_AUTO_CMD */
+
     rt_kprintf(FINSH_PROMPT);
 
     while (1)

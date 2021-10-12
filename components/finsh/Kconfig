@@ -79,6 +79,16 @@ if RT_USING_MSH
         int "The number of arguments for a shell command"
         default 10
 
+    config FINSH_USING_AUTO_CMD
+        bool "Execute a cmd when finsh start"
+        default n
+
+    if FINSH_USING_AUTO_CMD
+        config FINSH_AUTO_CMD
+            string "The default cmd for shell auto execute"
+            default "help"
+    endif
+    
 endif
 
 endmenu
