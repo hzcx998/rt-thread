@@ -16,6 +16,7 @@
  *                             initialization when use GNU GCC compiler.
  * 2016-11-26     armink       add password authentication
  * 2018-07-02     aozima       add custom prompt support.
+ * 2021-10-15     JasonHu      add simple auto cmd support.
  */
 
 #include <rthw.h>
@@ -460,6 +461,16 @@ void finsh_thread_entry(void *parameter)
     /* waiting authenticate success */
     finsh_wait_auth();
 #endif
+
+#ifdef FINSH_USING_AUTO_CMD
+#ifndef FINSH_AUTO_CMD
+#define FINSH_AUTO_CMD "help"
+#endif
+    if (strlen(FINSH_AUTO_CMD) > 0)
+    {
+        msh_exec(FINSH_AUTO_CMD, strlen(FINSH_AUTO_CMD));
+    }
+#endif /* FINSH_USING_AUTO_CMD */
 
     rt_kprintf(FINSH_PROMPT);
 
